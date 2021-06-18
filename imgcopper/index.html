@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="cropper.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    p{
+      font-size: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -195,6 +200,15 @@
                 </span>
               </button>
             </div>
+            <div class="btngroup">
+              <button type="button" class="btn btn-success w-100" data-method="getCroppedCanvas"
+                data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
+                <span class="docs-tooltip" data-toggle="tooltip"
+                  title="cropper.getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })">
+                  Get Cropped Canvas
+                </span>
+              </button>
+            </div>
           </div><!-- /.docs-buttons -->
 
           <div class="col-md-3 docs-toggles d-none">
@@ -218,15 +232,7 @@
       </div>
       <div class="col-12 justify-content-center">
 
-        <div class="btngroup">
-          <button type="button" class="btn btn-success w-100" data-method="getCroppedCanvas"
-            data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
-            <span class="docs-tooltip" data-toggle="tooltip"
-              title="cropper.getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })">
-              Get Cropped Canvas
-            </span>
-          </button>
-        </div>
+       
       </div>
     </div>
   </div>
@@ -253,8 +259,8 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/jquery@3/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  <script src="croppers.js"></script>
-  <script src="Logo.js"></script>
+  <script src="../imgcopper/croppers.js"></script>
+  <script src="../imgcopper/Logo.js"></script>
 </body>
 
 </html>
