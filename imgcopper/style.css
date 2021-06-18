@@ -1,0 +1,62 @@
+canvas{
+    width: 100%;
+  }
+
+  .inputImage{
+    padding: 20px;
+    border: 2px dotted black;
+    background: rgba(255,255,255,0.5);
+    color: gray;
+    font-size: 4rem;
+}
+.btngroup{
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.docs-buttons{
+    justify-content: center;
+    display: flex;
+}
+
+.btngroup button{
+    margin: 5px;
+    height: 70px;
+    /* width: auto; */
+}
+.btngrouplefts{width: 150px;margin-top: 10px;margin-bottom: 10px;/* position: relative; *//* display: inline-flex; *//* vertical-align: middle; */background: #007bff;height: 150px;/* margin: auto; */text-align: center;border-radius: 66%;}
+.btngroupleft{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: relative;
+    left: -10%;
+    height: 2px;
+    top: 30px;
+    width: 50px;
+}
+
+.btngroupright{
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    position: relative;
+    left: 10%;
+    top: -30%;
+    width: 50px;
+}
+.btngroupup{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    position: relative;
+    top: -3%;
+    /* max-width: 66px; */
+    width: 50px;
+    right: 20%;
+}
+.btngroupdown{
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: relative;
+    left: 20%;
+    top: -5%;
+    width: 50px;
+}
