@@ -1,66 +1,74 @@
-//document.getElementById("defaultOpen").click();
-var flag = false;
-var imageInfo;
-$(document).ready(function () {
-  let result = document.querySelector('.result'),
-    img_result = document.querySelector('.img-result'),
-    img_w = document.querySelector('.img-w'),
-    img_h = document.querySelector('.img-h'),
-    options = document.querySelector('.options'),
-    save = document.querySelector('.save'),
-    actionssave = document.querySelector('.actionssave'),
+window.onload = function () {
+  'use strict';
 
-    cropped = document.querySelector('.cropped'),
-    dwn = document.querySelector('#btnSubmit'),
-    upload = document.querySelector('#file-input'),
-    cropper = '';
+  var Cropper = window.Cropper;
+  var URL = window.URL || window.webkitURL;
+  var container = document.querySelector('.img-container');
+  var image = container.getElementsByTagName('img').item(0);
+  var download = document.getElementById('download');
+  var actions = document.getElementById('actions');
+  var dataX = document.getElementById('dataX');
+  var dataY = document.getElementById('dataY');
+  var dataHeight = document.getElementById('dataHeight');
+  var dataWidth = document.getElementById('dataWidth');
+  var dataRotate = document.getElementById('dataRotate');
+  var dataScaleX = document.getElementById('dataScaleX');
+  var dataScaleY = document.getElementById('dataScaleY');
+  var options = {
+    aspectRatio: 16 / 9,
+    preview: '.img-preview',
+    ready: function (e) {
+      console.log(e.type);
+    },
+    cropstart: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    cropmove: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    cropend: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    crop: function (e) {
+      var data = e.detail;
 
-  // on change show image with crop options
-  upload.addEventListener('change', (e) => {
-
-    if (e.target.files.length) {
-      // start file reader
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target.result) {
-          // create new image
-          let img = document.createElement('img');
-          img.id = 'image';
-          img.src = e.target.result
-          // clean result before
-          result.innerHTML = '';
-          // append new image
-          result.appendChild(img);
-          // show save btn and options
-          save.classList.remove('hide');
-          actionssave.classList.remove('hide');
-          options.classList.remove('hide');
-          // init cropper
-          cropper = new Cropper(img);
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
+      console.log(e.type);
+      dataX.value = Math.round(data.x);
+      dataY.value = Math.round(data.y);
+      dataHeight.value = Math.round(data.height);
+      dataWidth.value = Math.round(data.width);
+      dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
+      dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
+      dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
+    },
+    zoom: function (e) {
+      console.log(e.type, e.detail.ratio);
     }
-  });
+  };
+  var cropper = new Cropper(image, options);
+  var originalImageURL = image.src;
+  var uploadedImageType = 'image/jpeg';
+  var uploadedImageName = 'cropped.jpg';
+  var uploadedImageURL;
 
-  // save on click
-  save.addEventListener('click', (e) => {
-    e.preventDefault();
-    // get result to data uri
-    let imgSrc = cropper.getCroppedCanvas({
-      width: img_w.value // input value
-    }).toDataURL();
-    // remove hide class of img
-    cropped.classList.remove('hide');
-    img_result.classList.remove('hide');
-    // show image cropped
-    cropped.src = imgSrc;
-    imageInfo = imgSrc;
-    //console.log("ddddddddddddddddddddddddd" + imgSrc)
-    dwn.classList.remove('hide');
+  // Tooltip
+  $('[data-toggle="tooltip"]').tooltip();
 
-  });
+  // Buttons
+  if (!document.createElement('canvas').getContext) {
+    $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+  }
 
+  if (typeof document.createElement('cropper').style.transition === 'undefined') {
+    $('button[data-method="rotate"]').prop('disabled', true);
+    $('button[data-method="scale"]').prop('disabled', true);
+  }
+
+  // Download
+  if (typeof download.download === 'undefined') {
+    download.className += ' disabled';
+    download.title = 'Your browser does not support download';
+  }
 
   // Options
   actions.querySelector('.docs-toggles').onchange = function (event) {
@@ -89,13 +97,13 @@ $(document).ready(function () {
         canvasData = cropper.getCanvasData();
 
         options.ready = function () {
-          //console.log('ready');
+          console.log('ready');
           cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
         };
       } else {
         options[target.name] = target.value;
         options.ready = function () {
-          //console.log('ready');
+          console.log('ready');
         };
       }
 
@@ -147,7 +155,7 @@ $(document).ready(function () {
           try {
             data.option = JSON.parse(input.value);
           } catch (e) {
-            //console.log(e.message);
+            console.log(e.message);
           }
         }
       }
@@ -164,16 +172,16 @@ $(document).ready(function () {
           try {
             data.option = JSON.parse(data.option);
           } catch (e) {
-            //console.log(e.message);
+            console.log(e.message);
           }
 
-          // if (uploadedImageType === 'image/jpeg') {
-          //   if (!data.option) {
-          //     data.option = {};
-          //   }
+          if (uploadedImageType === 'image/jpeg') {
+            if (!data.option) {
+              data.option = {};
+            }
 
-          //   data.option.fillColor = 'transparent';
-          // }
+            data.option.fillColor = '#fff';
+          }
 
           break;
       }
@@ -193,18 +201,18 @@ $(document).ready(function () {
           target.setAttribute('data-option', -data.option);
           break;
 
-          // case 'getCroppedCanvas':
-          //   if (result) {
-          //     // Bootstrap's Modal
-          //     $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+        case 'getCroppedCanvas':
+          if (result) {
+            // Bootstrap's Modal
+            $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
 
-          //     if (!download.disabled) {
-          //       download.download = uploadedImageName;
-          //       download.href = result.toDataURL(uploadedImageType);
-          //     }
-          //   }
+            if (!download.disabled) {
+              download.download = uploadedImageName;
+              download.href = result.toDataURL(uploadedImageType);
+            }
+          }
 
-          //   break;
+          break;
 
         case 'destroy':
           cropper = null;
@@ -222,139 +230,76 @@ $(document).ready(function () {
         try {
           input.value = JSON.stringify(result);
         } catch (e) {
-          //console.log(e.message);
+          console.log(e.message);
         }
       }
     }
   };
 
-});
+  document.body.onkeydown = function (event) {
+    var e = event || window.event;
 
-
-$("#btnSubmit").click(function (event) {
-  GlobalLoadershow();
-  //stop submit the form, we will post it manually.
-  event.preventDefault();
-  //alert('hello dear');
-  fire_ajax_submitTest(imageInfo);
-
-});
-
-
-
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#blah').attr('src', e.target.result);
+    if (e.target !== this || !cropper || this.scrollTop > 300) {
+      return;
     }
 
-    reader.readAsDataURL(input.files[0]);
-  }
-}
+    switch (e.keyCode) {
+      case 37:
+        e.preventDefault();
+        cropper.move(-1, 0);
+        break;
 
-$("#imgInp").change(function () {
-  readURL(this);
-});
+      case 38:
+        e.preventDefault();
+        cropper.move(0, -1);
+        break;
 
+      case 39:
+        e.preventDefault();
+        cropper.move(1, 0);
+        break;
 
-function fire_ajax_submitTest(imageInfo) {
+      case 40:
+        e.preventDefault();
+        cropper.move(0, 1);
+        break;
+    }
+  };
 
-  var loggedUser = JSON.parse(sessionStorage.getItem("LOGGED_IN_USER"));
-  var formData = $('#fileUploadForm').serializeToJSON();
-  formData["advisorId"] = loggedUser.id;
-  //  //console.log('imageInfo' + imageInfo)
-  formData["croppedImageData"] = imageInfo;
-  var data = JSON.stringify(formData);
+  // Import image
+  var inputImage = document.getElementById('inputImage');
 
-  $.ajax({
-    async: false,
-    url: ClientServiceUrl + "logo/cropped/upload",
-    method: "POST",
-    data: data,
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader('Authorization', "Bearer " + sessionStorage.getItem("sessionID"));
-    },
-    contentType: "application/json; charset=utf-8",
-    success: function (data) {
-      alert(data);
-      $.ajax({
-        url: ClientServiceUrl + "getadvisor/logo/" + loggedUser.id,
-        type: "GET",
-        contentType: "image/jpeg",
-        dataType: "text",
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader('Authorization', "Bearer " + sessionStorage.getItem("sessionID"));
-        },
-        success: function (data) {
-          if (data != "") {
-            $("#idBussinessHeaderAdvisorLogo").attr('src', 'data:image/jpeg;base64,' + data);
-          } else {
-            $("#idBussinessHeaderAdvisorLogo").attr('src', '../Common/assets/images/newlogo.png');
+  if (URL) {
+    inputImage.onchange = function () {
+      var files = this.files;
+      var file;
+
+      if (files && files.length) {
+        file = files[0];
+
+        if (/^image\/\w+/.test(file.type)) {
+          uploadedImageType = file.type;
+          uploadedImageName = file.name;
+
+          if (uploadedImageURL) {
+            URL.revokeObjectURL(uploadedImageURL);
           }
+
+          image.src = uploadedImageURL = URL.createObjectURL(file);
+
+          if (cropper) {
+            cropper.destroy();
+          }
+
+          cropper = new Cropper(image, options);
+          inputImage.value = null;
+        } else {
+          window.alert('Please choose an image file.');
         }
-      });
-      GlobalLoaderhide();
-    },
-    error: function (jqXHR, exception) {
-      GlobalLoaderhide();
-      var msg = '';
-      if (jqXHR.status === 0) {
-        msg = 'Could not connect to the server, please contact System Administrator.';
-      } else if (jqXHR.status == 400) {
-        msg = 'There is some problem in the server, please contact System Administrator.\n';
-      } else if (jqXHR.status == 401) {
-        var error, error_description;
-        error = jqXHR.responseJSON.error_description;
-        error_description = "Access token expired: " + sessionStorage.getItem("sessionID");
-        if (error === error_description) {
-          msg = "Your session has expired.Please log in again"
-          bootbox.alert({
-            message: msg,
-            callback: function () {
-              window.location = "../index.html";
-            }
-          });
-        }
-        if (error === "unauthorized") {
-          msg = "Full authentication is required to access this resource",
-            bootbox.alert({
-              message: msg
-            });
-        }
-      } else if (jqXHR.status == 403) {
-        msg = 'you don’t have permission to access ‘/’ on this server.';
-      } else if (jqXHR.status == 404) {
-        msg = 'Requested service url not found.';
-      } else if (jqXHR.status == 500) {
-        msg = 'There is some problem in the server, please contact System Administrator.\n';
-      } else if (exception === 'parsererror') {
-        msg = 'Failed to get result.';
-      } else if (exception === 'timeout') {
-        msg = 'Timed Out!';
-      } else if (exception === 'abort') {
-        msg = 'Request aborted.';
-      } else {
-        msg = 'Something went wrong, could not connect to the server, please contact System Administrator.\n';
       }
-    }
-  });
-
-
-
-}
-
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+    };
+  } else {
+    inputImage.disabled = true;
+    inputImage.parentNode.className += ' disabled';
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+};
