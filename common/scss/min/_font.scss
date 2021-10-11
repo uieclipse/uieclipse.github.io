@@ -1,0 +1,85 @@
+// stylelint-disable value-keyword-case
+
+$LatoBlack:"Lato-Black "!default;
+$LatoBlackItalic:"Lato-BlackItalic";
+$LatoBold:"Lato-Bold";
+$LatoBoldItalic:"Lato-BoldItalic";
+$LatoItalic:"Lato-Italic";
+$LatoLightItalic:"Lato-LightItalic";
+$LatoThinItalic:"Lato-ThinItalic";
+$LatoLight:"Lato-Light";
+$LatoThin:"Lato-Thin";
+$LatoRegular:"Lato-Regular";
+// $LatoLight:"Lato-Light";
+// $LatoLight:"Lato-Light";
+
+
+@font-face {
+  font-family: $LatoBlack;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../font/Lato/Lato-Black.ttf');
+}
+
+@font-face {
+  font-family: $LatoBlackItalic;
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../font/Lato/Lato-BlackItalic.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoBold;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../font/Lato/Lato-Bold.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoBoldItalic;
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../font/Lato/Lato-BoldItalic.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoItalic;
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../font/Lato/Lato-Italic.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoLight;
+  font-style: normal;
+  font-weight: normal;
+  src:url('../font/Lato/Lato-Light.ttf');
+}
+
+@font-face {
+  font-family: $LatoLightItalic;
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../font/Lato/Lato-LightItalic.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoRegular;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../font/Lato/Lato-Regular.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoThin;
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../font/Lato/Lato-Thin.ttf') ;
+}
+
+@font-face {
+  font-family: $LatoThinItalic;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../font/Lato/Lato-ThinItalic.ttf');
+}
