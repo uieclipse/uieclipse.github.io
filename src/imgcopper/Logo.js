@@ -1,3 +1,8 @@
+// const imgcont =$('.docs-demo')
+
+$('.displaydiv').hide();
+
+
 window.onload = function () {
   'use strict';
 
@@ -7,7 +12,7 @@ window.onload = function () {
   var image = container.getElementsByTagName('img').item(0);
   var download = document.getElementById('download');
   var actions = document.getElementById('actions');
- 
+
   var options = {
     // aspectRatio: 1 / 1,
     preview: '.img-preview',
@@ -27,7 +32,7 @@ window.onload = function () {
       var data = e.detail;
 
       console.log(e.type);
-      
+
     },
     zoom: function (e) {
       console.log(e.type, e.detail.ratio);
@@ -192,7 +197,16 @@ window.onload = function () {
         case 'getCroppedCanvas':
           if (result) {
             // Bootstrap's Modal
-            $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+            // var myModal = document.getElementById('getCroppedCanvasModal')
+            // var myInput = document.getElementById('download')
+
+            // myModal.addEventListener('shown.bs.modal', function () {
+            //   myInput.focus()
+            // })
+            $('#getCroppedCanvasModal').modal('show');
+            
+            $('#Idresult').html(result);
+            //  .find('.modal-body').html(result)
 
             if (!download.disabled) {
               download.download = uploadedImageName;
@@ -259,6 +273,8 @@ window.onload = function () {
 
   if (URL) {
     inputImage.onchange = function () {
+      $('.displaydiv').show();
+      $('.inputImagediv').hide();
       var files = this.files;
       var file;
 

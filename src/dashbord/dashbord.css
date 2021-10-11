@@ -1,0 +1,203 @@
+@import url(https://use.fontawesome.com/releases/v5.13.0/css/all.css);
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@font-face {
+  font-family: "Lato-Black ";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "Lato-BlackItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-BlackItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Lato-BoldItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Light.ttf");
+}
+
+@font-face {
+  font-family: "Lato-LightItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-LightItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Thin.ttf");
+}
+
+@font-face {
+  font-family: "Lato-ThinItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-ThinItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Black ";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "Lato-BlackItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-BlackItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Lato-BoldItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Light.ttf");
+}
+
+@font-face {
+  font-family: "Lato-LightItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-LightItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-Thin.ttf");
+}
+
+@font-face {
+  font-family: "Lato-ThinItalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../font/Lato/Lato-ThinItalic.ttf");
+}
+
+/*media screen for maximum width 1024*/
+/*media screen for maximum width 1024*/
+/* Fonts */
+/* Variables */
+/* Styles */
+body {
+  font-family: "Oswald", sans-serif;
+  background: #dbf2f7;
+  margin: 0;
+}
+
+.card-title i:hover {
+  -webkit-transform: scale(1.25) rotate(100deg);
+          transform: scale(1.25) rotate(100deg);
+  color: #ee7724;
+}
+
+.card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-text {
+  height: 80px;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: scale3d(0, 0, 1);
+          transform: scale3d(0, 0, 1);
+  -webkit-transition: -webkit-transform .3s ease-out 0s;
+  transition: -webkit-transform .3s ease-out 0s;
+  transition: transform .3s ease-out 0s;
+  transition: transform .3s ease-out 0s, -webkit-transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+
+.card::before {
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+.card::after {
+  -webkit-transform-origin: right bottom;
+          transform-origin: right bottom;
+}
+
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+/*# sourceMappingURL=dashbord.css.map */
