@@ -1,0 +1,22 @@
+.swal-icon--success__line {
+    background-color: hsl(7deg 70% 28%);
+}
+
+.swal-icon--success__ring,
+.swal-icon--error {
+    border: 4px solid hsl(7deg 70% 28%);
+}
+
+.swal-icon--info {
+    border-color: #742214;
+}
+
+.swal-icon--info:after,
+.swal-icon--info:before {
+
+    background-color: #dfa334;
+}
+
+.swal-icon--error__line {
+    background-color: #d0912f;
+}
